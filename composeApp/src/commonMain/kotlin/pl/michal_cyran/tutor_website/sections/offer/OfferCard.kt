@@ -1,4 +1,4 @@
-package pl.michal_cyran.tutor_website.sections.offer
+package pl.michal_cyran.tutor_website.sections.lessons
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -9,13 +9,11 @@ import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,14 +31,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-
+import pl.michal_cyran.tutor_website.SUBHEADLINE_SIZE
 
 @Composable
 fun OfferCard(
+    painter: Painter,
     title: String,
     description: String,
-    icon: Painter,
     modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -57,60 +54,60 @@ fun OfferCard(
     }
 
     Card(
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(
-//            containerColor = Color(17, 24, 39),
-//            containerColor = Colo
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ),
         modifier = modifier
-            .height(300.dp)
+            .padding(16.dp)
+            .fillMaxWidth()
             .graphicsLayer(
                 scaleX = scale,
                 scaleY = scale
             ).hoverable(
                 interactionSource
             )
-            .border(1.dp, MaterialTheme.colorScheme.secondaryContainer, RoundedCornerShape(8.dp))
+            .border(1.dp, MaterialTheme.colorScheme.secondaryContainer, RoundedCornerShape(8.dp)),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
     ) {
-        Column(
+        Row(
             modifier = Modifier
-                .padding(16.dp)
-                .fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
+                .height(155.dp)
+                .padding(36.dp),
+//            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(20.dp)
+        )  {
             Box(
                 modifier = Modifier
-                    .size(70.dp)
+                    .size(50.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .background(color = boxColor),
+//                    .background(color = MaterialTheme.colorScheme.surface),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = icon,
+                    painter = painter,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(48.dp)
+                    modifier = Modifier
+                        .padding(bottom = 8.dp)
+                        .size(30.dp),
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            Text(
-                text = title,
-                style = MaterialTheme.typography.headlineMedium,
-                textAlign = TextAlign.Center,
-            )
-
-            Spacer(modifier = Modifier.height(15.dp))
-
-            Text(
-                text = description,
-                fontSize = 18.sp,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                textAlign = TextAlign.Center,
-            )
+            Column {
+                Text(
+                    text = title,
+                    fontSize = SUBHEADLINE_SIZE,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Left,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.9f)
+                    ),
+                )
+            }
         }
+
     }
 }

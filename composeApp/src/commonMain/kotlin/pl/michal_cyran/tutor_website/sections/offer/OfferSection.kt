@@ -16,9 +16,16 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
 import pl.michal_cyran.tutor_website.HEADLINE_SIZE
 import pl.michal_cyran.tutor_website.SUBHEADLINE_SIZE
+import pl.michal_cyran.tutor_website.sections.lessons.OfferCard
+import pl.michal_cyran.tutor_website.sections.lessons.PropertyCard
 import tutorwebsite.composeapp.generated.resources.Res
+import tutorwebsite.composeapp.generated.resources.assignment
+import tutorwebsite.composeapp.generated.resources.backpack
 import tutorwebsite.composeapp.generated.resources.calculate
 import tutorwebsite.composeapp.generated.resources.desktop
+import tutorwebsite.composeapp.generated.resources.extension
+import tutorwebsite.composeapp.generated.resources.keyboard
+import tutorwebsite.composeapp.generated.resources.memory
 import tutorwebsite.composeapp.generated.resources.schedule
 import tutorwebsite.composeapp.generated.resources.school
 
@@ -42,7 +49,7 @@ fun OfferSection(
         )
         
         Text(
-            text = "Oferuję korepetycje z matematyki dostosowane do Twoich potrzeb i poziomu zaawansowania.",
+            text = "Oferuję korepetycje dostosowane do Twoich potrzeb i poziomu zaawansowania.",
             fontSize = SUBHEADLINE_SIZE,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
@@ -53,26 +60,64 @@ fun OfferSection(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            OfferCard(
-                title = "Szkoła podstawowa",
-                description = "Pomoc w zrozumieniu podstawowych pojęć matematycznych i przygotowanie do egzaminu ósmoklasisty.",
-                icon = painterResource(Res.drawable.calculate),
-                modifier = Modifier.weight(1f)
-            )
-            
-            OfferCard(
-                title = "Szkoła średnia",
-                description = "Pomoc w bieżących lekcjach i/lub przygotowanie do matury. Zarówno poziom podstawowy jak i rozszerzony.",
-                icon = painterResource(Res.drawable.school),
-                modifier = Modifier.weight(1f)
-            )
-            
-            OfferCard(
-                title = "Informatyka",
-                description = "Pomoc w przygotowaniu do egzaminu lub bieżących lekcji z poziomu kwalifikacji E.13 i E.14 (lub EE.08 i EE.09).",
-                icon = painterResource(Res.drawable.desktop),
-                modifier = Modifier.weight(1f)
-            )
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                OfferHeading(
+                    title = "Matematyka",
+                    painter = painterResource(Res.drawable.calculate),
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                OfferCard(
+                    painter = painterResource(Res.drawable.backpack),
+                    title = "Szkoła podstawowa",
+                    description = "Pomoc w zrozumieniu podstawowych pojęć matematycznych i przygotowanie do egzaminu ósmoklasisty.",
+                )
+
+                OfferCard(
+                    painter = painterResource(Res.drawable.school),
+                    title = "Szkoła średnia - poziom podstawowy",
+                    description = "Wsparcie w bieżących lekcjach i przygotowanie do matury na poziomie podstawowym.",
+                )
+
+                OfferCard(
+                    painter = painterResource(Res.drawable.extension),
+                    title = "Szkoła średnia - poziom rozszerzony",
+                    description = "Zaawansowane zagadnienia matematyczne i przygotowanie do matury rozszerzonej.",
+                )
+
+            }
+
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                OfferHeading(
+                    title = "Informatyka",
+                    painter = painterResource(Res.drawable.desktop),
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                OfferCard(
+                    painter = painterResource(Res.drawable.memory),
+                    title = "Szkoła podstawowa",
+                    description = "Informatyka w szkole podstawowej - nauka i pomoc w bieżących lekcjach, w szczególności Scratch.",
+                )
+
+                OfferCard(
+                    painter = painterResource(Res.drawable.keyboard),
+                    title = "Szkoła średnia",
+                    description = "Pomoc w bieżących lekcjach z informatyki ogólnej i zajęć na kierunkach technik informatyk i technik programista.",
+                )
+
+                OfferCard(
+                    painter = painterResource(Res.drawable.assignment),
+                    title = "Egzamin zawodowy",
+                    description = "Pomoc w przygotowaniu do egzaminu z poziomu kwalifikacji E.13 i E.14 / EE.08 i EE.09 / INF.03 i INF.04.",
+                )
+            }
         }
         
         Spacer(modifier = Modifier.height(24.dp))

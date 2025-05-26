@@ -39,8 +39,8 @@ fun NavigationDrawer(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(vertical = 16.dp)
             )
-            
-            Divider()
+
+            HorizontalDivider()
             
             NavigationItem("Strona główna") { onNavigate("home") }
             NavigationItem("O mnie") { onNavigate("about") }
@@ -50,8 +50,8 @@ fun NavigationDrawer(
             NavigationItem("Kontakt") { onNavigate("contact") }
             
             Spacer(modifier = Modifier.weight(1f))
-            
-            Divider()
+
+            HorizontalDivider()
             
             Button(
                 onClick = { /* Handle booking */ },

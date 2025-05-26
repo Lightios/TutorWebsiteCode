@@ -25,6 +25,7 @@ import tutorwebsite.composeapp.generated.resources.Res
 import tutorwebsite.composeapp.generated.resources._2
 import tutorwebsite.composeapp.generated.resources.j_weisner_eq2dAPn1qio_unsplash
 import tutorwebsite.composeapp.generated.resources.nick_hillier_yD5rv8_WzxA_unsplash
+import tutorwebsite.composeapp.generated.resources.thomas_t_OPpCbAAKWv8_unsplash
 
 @Composable
 fun AboutSection() {
@@ -43,7 +44,7 @@ fun AboutSection() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(Res.drawable.nick_hillier_yD5rv8_WzxA_unsplash),
+                painter = painterResource(Res.drawable.thomas_t_OPpCbAAKWv8_unsplash),
                 contentDescription = "Zdjęcie korepetytora",
                 modifier = Modifier
                     .weight(1f)
